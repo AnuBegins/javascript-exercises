@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+       <!-- Required meta tags -->
+       <meta charset="utf-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+       <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+       <!-- Font Awesome -->
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+
+       <!-- Bootstrap CSS -->
+       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+       <title>Multiplication Table</title>
+       <style> *{ outline: 0.0px dotted red; }</style>
+
+</head>
+
+<body>
+    <div class="table table-bordered table-sm " id="target"></div>
+</body>
+    <script>
+        // define function draw table
+        function draw_table() {
+            var dimension = 26;
+            // create  html string, expose table tag
+            let html_string = "<table>";
+            // outer loop; each iteration creates a ROW
+            for (let row = 0; row < dimension; row++) {
+                html_string += "<tr>";
+                // inner loop; each iteration creates a COL
+                for (let col = 0; col < dimension; col++) {
+                    let val, data;
+                    // calculate each cell value
+                    if ((row == 0) && (col == 0)) {
+                        val = "x";
+                    } else if (row == 0) {
+                        val = col;
+                    } else if (col == 0) {
+                        val = row;
+                    } else {
+                        val = row * col;
+                    }
+                    // attach table data tags around the calculated value
+                    if ((row == 0) || (col == 0)) {
+                        data = "<td class='table-primary font-weight-bold'>" + val + "</td>";  //styling the row & column headers
+                    } else if (row == col) {
+                        data = "<td class='table-secondary'>" + val + "</td>";  //styling the row & column headers
+                    }
+                    else {
+                        data = "<td>" + val + "</td>";
+                    }
+                    // add it to the html
+                    html_string += data;
+                }
+                // after the inner loop completes, close the table row
+                html_string += "</tr>";
+            }
+            // after the outer loop completes, close the entire table
+            html_string += "</table>";
+            document.getElementById("target").innerHTML = html_string;
+        }
+        draw_table();
+    </script>
+
+</html>

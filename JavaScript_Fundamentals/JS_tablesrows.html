@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <style type="text/css">
+        /* border and styling for table data */
+        td {
+            border: 1px solid silver;
+            text-align: center;
+            width: 30px;
+            height: 30px;
+        }
+
+        /* background and bolding for the first element of our rows and data */
+        td:first-child,
+        tr:first-child {
+            background-color: silver;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="target"></div>
+</body>
+<script>
+    // define draw table
+    function draw_table() {
+        // create  html string, open up the table tag
+        let html_string = "<table>";
+        html_string += "<tr><th>x</th>";
+        var dimension = 16;
+        // each iteration of outer loop creates a ROW
+        for (let i = 0; i < dimension; i++) {
+            // inner loop iteration creates COLUMNS
+            for (let j = 0; j < dimension; j++) {
+                let data = "";
+                if (i == 0 && j > 0) {
+                    data += "<th>" + j + "</th>";
+                }
+                else if (j == 0 && i > 0) {
+                    data += "<td>" + (i) + "</td>";
+                }
+                else if (i > 0 && j > 0) {
+                    let nums = i * j;
+                    // attach our table data tags around the number
+                    data = "<td>" + nums + "</td>";
+                }
+                // calculate our number
+                // add it to the html
+                html_string += data;
+            }
+            // after the inner loop, we cap our table rows
+            html_string += "</tr>";
+        }
+        // after the outer loop, we cap our entire table
+        html_string += "</table>";
+        document.getElementById("target").innerHTML = html_string;
+    }
+    draw_table();
+</script>
+
+</html>
